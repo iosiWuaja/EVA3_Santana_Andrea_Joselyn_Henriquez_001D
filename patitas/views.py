@@ -129,10 +129,6 @@ def checkout(request):
       context = {}
       return render(request, 'patitas/checkout.html', context)
   
-def barra (request):
-      context = {}
-      return render(request, 'patitas/barra.html', context)
-  
   
 def gracias (request):
       context = {}
