@@ -1,41 +1,67 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link type='text/css' href='{% static "css/style.css"%}' rel='stylesheet'/>
+    <title>Añadir producto</title>
 </head>
 <body>
     
-    <div style=" text-align: center;">
-        <h2>Formulario CRUD para Productos</h2><br>
-        <form action="productosAdd" method="POST" >
+    <div class="productos-add">
+        <div class="titulos-pag">
+            <h2>Formulario CRUD para Productos</h2>
+        </div>
+
+        <div id="idMensajes">
+            {% if mensaje %}
+                <p class="mensaje">{{ mensaje }}</p>
+            {% endif %}
+        </div>
+
+        <form action="productosAdd" method="POST" class="form-crud">
             {% csrf_token %}
 
-            <pre>ID:            <input type="text" name="id"></pre>
-            <pre>Nombre:        <input type="text" name="nombre_prod"></pre>
-            <pre>Descripción:   <input type="text" name="descripcion"></pre>
-            <pre>Categoria:     <select name="id_categoria">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id">
+
+            <label for="nombre_prod">Nombre:</label>
+            <input type="text" id="nombre_prod" name="nombre_prod">
+
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion">
+
+            <label for="id_categoria">Categoria:</label>
+            <select id="id_categoria" name="id_categoria">
                 {% for categoria in categorias %}
                     <option value="{{ categoria.id_categoria }}">{{ categoria.categoria }}</option>
                 {% endfor %}
-             </select></pre>
-            <pre>Precio:        <input type="text" name="precio"></pre>
-            <pre>Stock:         <input type="text" name="stock"></pre>
-            <pre>Imagen:        <input type="file" name="imagen"></pre>
+            </select>
 
-            <input type="submit" name="opcion" value="Agregar">
+            <label for="precio">Precio:</label>
+            <input type="text" id="precio" name="precio">
 
+            <label for="stock">Stock:</label>
+            <input type="text" id="stock" name="stock">
+
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen">
+
+            <button type="submit" name="opcion" class="btn-agregar">Agregar</button>
         </form>
-        <br><br>
-        <a href="{% url 'crud' %}"> Volver </a>
+
         <br>
-        <div id="idMensajes">
-            {% if mensaje %}
-                {{ mensaje }}
-            {% endif %}
-        </div>
+        <a href="{% url 'crud' %}" class="btn-volver">Volver</a>
+        <br>
+
+
     </div>
     
 </body>

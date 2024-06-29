@@ -364,6 +364,32 @@ header .user-shop a:hover{
     font-weight: bold;
 }
 
+.botones-card{
+    display: grid;
+    grid-template-columns: repeat(2 1fr);
+}
+
+.editar-productos{
+    background-color: #d5294d;
+    width: 12%;
+    height: 40px;
+    text-align: center;
+    border-radius: 50px;
+    margin: 0 10px;
+}
+
+.editar-productos a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.editar-productos:hover{
+    background-color: #811a39;
+    transition: 0.5s;
+}
+
+
 @media screen and (max-width: 768px) {
     .card-prodct {
         width: calc(50% - 10px); 
@@ -753,3 +779,138 @@ CONTACTO
     color: #ffffff;
 }
 
+/*CRUD*/
+.btn-agregar {
+    background-color: #d5294d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    margin: 0 10px 10px;
+}
+
+.btn-agregar a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-agregar:hover {
+    background-color: #811a39;
+    transition: 0.5s;
+}
+
+/*TABLA CRUD*/
+.productos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+.productos-tabla th, .productos-tabla td {
+    padding: 12px 15px;
+}
+
+.productos-tabla thead {
+    background-color: #811a39;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.productos-tabla tbody tr:nth-of-type(even) {
+    background-color: #f7aab2;
+}
+
+.productos-tabla .product-image {
+    max-width: 50px;
+    height: auto;
+}
+
+.btn-eliminar, .btn-modificar {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #d5294d;
+}
+
+.btn-eliminar:hover, .btn-modificar:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+/*PRODUCTOS_ADD*/
+.productos-add, .productos-edit{
+    padding: 0 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-crud {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-crud label {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-crud input, .form-crud select {
+    padding: 10px;
+    border: 2px solid #d5294d;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.btn-agregar {
+    background-color: #d5294d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-agregar:hover {
+    background-color: #811a39;
+    transition: 0.5s;
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    background-color: #d5294d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-volver:hover {
+    background-color: #811a39;
+    transition: 0.5s;
+}
+
+.mensaje {
+    margin: 0 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.logo-pat-prod .logo_patitas_princ img{
+    width: 10%;
+}
