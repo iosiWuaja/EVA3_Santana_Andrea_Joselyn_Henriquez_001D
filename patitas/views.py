@@ -4,14 +4,16 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def index(request):
-    producto = Producto.objects.all()
-    context={'productos':producto}
+    context={}
     return render(request, 'patitas/index.html', context)
 
 def descuentos(request):
-    context={}
+    producto = Producto.objects.all()
+    context={'productos':producto}
     return render(request, 'patitas/descuentos.html', context)
-
+def carrito(request):
+    context={}
+    return render(request, 'patitas/carrito.html', context)
 def usuario(request):
     context={}
     return render(request,'patitas/usuario.html', context)
@@ -121,3 +123,17 @@ def productosUpdate(request):
         productos = Producto.objects.all()
         context = {'productos':productos}
         return render(request, 'patitas/lista_prod.html', context)
+    
+    
+def checkout(request):
+      context = {}
+      return render(request, 'patitas/checkout.html', context)
+  
+def barra (request):
+      context = {}
+      return render(request, 'patitas/barra.html', context)
+  
+  
+def gracias (request):
+      context = {}
+      return render(request, 'patitas/gracias.html', context)
