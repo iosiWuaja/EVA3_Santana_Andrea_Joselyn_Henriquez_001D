@@ -34,12 +34,9 @@
         </header>
     </div>
 
-    <!-- Contenido del pago y formulario adicional -->
     <div class="container">
         <div class="row justify-content-center mt-5">
-            <!-- Primer cuadro -->
-            
-            <!-- Segundo cuadro -->
+
             <div class="col-lg-6 mt-5 mt-lg-0">
                 <div class="box-element">
                     <h4>Información Adicional</h4>
@@ -77,10 +74,9 @@
                 </div>
             </div>
 
-            <!-- Detalle de Pedido -->
             <div class="col-lg-6 mt-5">
                 <div class="box-element">
-                    <a href="{% url 'carrito' %}" class="btn btn-outline-dark">&#x2190; Volver al Carrito</a>
+                    <a href="carrito" class="btn btn-outline-dark">&#x2190; Volver al Carrito</a>
                     <hr>
                     <h3>Resumen del Pedido</h3>
                     <hr>
@@ -97,7 +93,6 @@
         </div>
     </div>
 
-    <!-- Modal de confirmación -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -114,7 +109,6 @@
                     <p><strong>CVV:</strong> <span id="confirmCVV"></span></p>
                     <hr>
                     <div id="confirmOrderDetails">
-                        <!-- Aquí se mostrarán los detalles del pedido -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -125,87 +119,8 @@
         </div>
     </div>
 
-    <!-- Script para capturar los datos del formulario y mostrar en el modal -->
-    <script>
-        document.getElementById('btnPay').addEventListener('click', function() {
-            // Validar que los campos estén llenos
-            var cardNumber = document.getElementById('cardNumber').value;
-            var cardName = document.getElementById('cardName').value;
-            var expirationDate = document.getElementById('expirationDate').value;
-            var cvv = document.getElementById('cvv').value;
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 
-            if (cardNumber.trim() === '' || cardName.trim() === '' || expirationDate.trim() === '' || cvv.trim() === '') {
-                alert('Por favor completa todos los campos antes de continuar.');
-                return;
-            }
-
-            // Mostrar datos en el modal de confirmación
-            document.getElementById('confirmCardNumber').textContent = cardNumber;
-            document.getElementById('confirmCardName').textContent = cardName;
-            document.getElementById('confirmExpiration').textContent = expirationDate;
-            document.getElementById('confirmCVV').textContent = cvv;
-
-            // Obtener y mostrar detalles del pedido
-            var orderDetails = obtenerDetallesPedido();
-            mostrarDetallesPedido(orderDetails);
-
-            // Mostrar el modal
-            $('#confirmModal').modal('show');
-        });
-
-        // Función para obtener los detalles del pedido (simulación)
-        function obtenerDetallesPedido() {
-            // Aquí puedes obtener los productos del carrito o ajustarlo según tu lógica
-            var productos = [
-                { nombre: 'Producto 1', precio: 20.00, cantidad: 2 },
-                // Puedes agregar más productos según tu aplicación
-            ];
-
-            return productos;
-        }
-
-        // Función para mostrar los detalles del pedido en el modal
-        function mostrarDetallesPedido(orderDetails) {
-            var modalContent = document.getElementById('confirmOrderDetails');
-            modalContent.innerHTML = ''; // Limpiar contenido anterior
-
-            orderDetails.forEach(function(producto) {
-                var detalleProducto = document.createElement('p');
-                detalleProducto.textContent = `${producto.nombre} - $${(producto.precio * producto.cantidad).toFixed(2)} (${producto.cantidad} unidades)`;
-                modalContent.appendChild(detalleProducto);
-            });
-        }
-
-        // Función para redirigir después de confirmar el pago
-        document.getElementById('confirmPayment').addEventListener('click', function() {
-            // Aquí puedes redirigir o mostrar un mensaje de éxito
-            alert('¡Pago confirmado! Redirigiendo a la página principal...');
-            window.location.href = '/index';  // Cambia '/' por la URL a la que deseas redirigir
-        });
-
-        // Capturar el envío del formulario de información adicional
-        document.getElementById('form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar el envío del formulario por defecto
-
-            // Capturar los datos del formulario
-            var name = document.querySelector('#form input[name="name"]').value;
-            var email = document.querySelector('#form input[name="email"]').value;
-            var address = document.querySelector('#form input[name="address"]').value;
-            var city = document.querySelector('#form input[name="city"]').value;
-            var state = document.querySelector('#form input[name="state"]').value;
-            var zipcode = document.querySelector('#form input[name="zipcode"]').value;
-
-            // Mostrar los datos en la consola (puedes procesarlos o enviarlos a un servidor aquí)
-            console.log('Nombre:', name);
-            console.log('Email:', email);
-            console.log('Dirección:', address);
-            console.log('Ciudad:', city);
-            console.log('Estado:', state);
-            console.log('Código Postal:', zipcode);
-
-            // Puedes redirigir o mostrar un mensaje de éxito
-            alert('¡Formulario de información enviado correctamente!');
-        });
-    </script>
 </body>
 </html>

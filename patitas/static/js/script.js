@@ -180,7 +180,68 @@ $(document).ready(function() {
     });
 });
 
+document.getElementById('btnPay').addEventListener('click', function() {
+    var cardNumber = document.getElementById('cardNumber').value;
+    var cardName = document.getElementById('cardName').value;
+    var expirationDate = document.getElementById('expirationDate').value;
+    var cvv = document.getElementById('cvv').value;
 
-/*CARRITO DE COMPRAS*/
-/*OPCIONES CARDS*/
+    if (cardNumber.trim() === '' || cardName.trim() === '' || expirationDate.trim() === '' || cvv.trim() === '') {
+        alert('Por favor completa todos los campos antes de continuar.');
+        return;
+    }
 
+    document.getElementById('confirmCardNumber').textContent = cardNumber;
+    document.getElementById('confirmCardName').textContent = cardName;
+    document.getElementById('confirmExpiration').textContent = expirationDate;
+    document.getElementById('confirmCVV').textContent = cvv;
+
+    var orderDetails = obtenerDetallesPedido();
+    mostrarDetallesPedido(orderDetails);
+
+    $('#confirmModal').modal('show');
+});
+
+function obtenerDetallesPedido() {
+    var productos = [
+        { nombre: 'Producto 1', precio: 20.00, cantidad: 2 },
+    ];
+
+    return productos;
+}
+
+function mostrarDetallesPedido(orderDetails) {
+    var modalContent = document.getElementById('confirmOrderDetails');
+    modalContent.innerHTML = '';
+
+    orderDetails.forEach(function(producto) {
+        var detalleProducto = document.createElement('p');
+        detalleProducto.textContent = `${producto.nombre} - $${(producto.precio * producto.cantidad).toFixed(2)} (${producto.cantidad} unidades)`;
+        modalContent.appendChild(detalleProducto);
+    });
+}
+
+document.getElementById('confirmPayment').addEventListener('click', function() {
+    alert('¡Pago confirmado! Redirigiendo a la página principal...');
+    window.location.href = '/index';
+});
+
+document.getElementById('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var name = document.querySelector('#form input[name="name"]').value;
+    var email = document.querySelector('#form input[name="email"]').value;
+    var address = document.querySelector('#form input[name="address"]').value;
+    var city = document.querySelector('#form input[name="city"]').value;
+    var state = document.querySelector('#form input[name="state"]').value;
+    var zipcode = document.querySelector('#form input[name="zipcode"]').value;
+
+    console.log('Nombre:', name);
+    console.log('Email:', email);
+    console.log('Dirección:', address);
+    console.log('Ciudad:', city);
+    console.log('Estado:', state);
+    console.log('Código Postal:', zipcode);
+
+    alert('¡Formulario de información enviado correctamente!');
+});
